@@ -18,14 +18,15 @@ export default connect(mapComponentToProps)(
       super(props)
       let today = new Date()
       this.state = {
-        apiKey: "NT8V130OXGjNIRbuEbvygKwFipek7WxYXI8nn1o9",
-        startDate: `${today.getFullYear()}-${today.getMonth() +1}-${today.getDate()}`,
-        apiUrl: "https://api.nasa.gov/neo/rest/v1/feed",
-        asteroids: []
+        asteroidsRequest: {
+          apiKey: "NT8V130OXGjNIRbuEbvygKwFipek7WxYXI8nn1o9",
+          startDate: `${today.getFullYear()}-${today.getMonth() +1}-${today.getDate()}`,
+          apiUrl: "https://api.nasa.gov/neo/rest/v1/feed"
+        }
       }
     }
     componentWillMount(){
-      this.props.dispatch(fetchAsteroids())
+      this.props.dispatch(fetchAsteroids(this.state.asteroidsRequest))
     }
 
     render() {
